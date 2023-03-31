@@ -1,5 +1,5 @@
 <mat-toolbar color="warn">
-  <span>ETDB consultation</span>
+  <span>SZV consultation</span>
 </mat-toolbar>
 <mat-card mat-card class="info-card">
   <mat-card-header>
@@ -16,3 +16,29 @@
     which was valid on that date. Finally, you enter the attribute data.
   </mat-card-content>
 </mat-card>
+
+  <mat-card mat-card class="data-card">
+    <mat-card-header>
+      <mat-card-title>Search</mat-card-title>
+    </mat-card-header>
+    <mat-form-field appearance="fill">
+      <mat-label>RIZIV/INAMI number</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Attribute class</mat-label>
+      <mat-select>
+        <mat-option value="HCW">HCW</mat-option>
+        <mat-option value="HCI">HCI</mat-option>
+        <mat-option value="HCA">HCA</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Prestation date</mat-label>
+      <input matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </mat-card>
+
+
