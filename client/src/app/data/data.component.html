@@ -1,1 +1,26 @@
-<p>data works!</p>
+<form [formGroup] = "inputForm" class="form-container">
+<mat-card mat-card class="data-card">
+    <mat-card-header>
+      <mat-card-title>Search</mat-card-title>
+    </mat-card-header>
+    <mat-form-field appearance="fill">
+      <mat-label>RIZIV/INAMI number</mat-label>
+      <input formControlName="iriziv_n" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Attribute class</mat-label>
+      <mat-select formControlName="iclass">
+        <mat-option value="HCW">HCW</mat-option>
+        <mat-option value="HCI">HCI</mat-option>
+        <mat-option value="HCA">HCA</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Prestation date</mat-label>
+      <input formControlName="iprestdate" matInput [matDatepicker]="picker"> 
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <button (click)="saveForm()" mat-raised-button color="warn">OK</button>
+  </mat-card>
+</form>
