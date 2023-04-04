@@ -1,4 +1,19 @@
-<form [formGroup] = "inputForm" class="form-container">
+<mat-card mat-card class="info-card">
+  <mat-card-header>
+    <mat-card-title>Information</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    This application provides the possibility to generate the information of a provider, institution or medical device.
+  </mat-card-content>
+  <mat-card-header>
+    <mat-card-subtitle>How to</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    Enter the correct values into the form. First you need to enter a valid RIZIV/INAMI number with a maximum of eight numbers. Then you enter a prestation date so you can get the information 
+    that was valid on that date. Finally, you enter the attribute data.
+  </mat-card-content>
+</mat-card>
+<form [formGroup] = "inputForm" (ngSubmit)="onSubmit()" class="form-container">
 <mat-card mat-card class="data-card">
     <mat-card-header>
       <mat-card-title>Search</mat-card-title>
@@ -21,6 +36,10 @@
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <button (click)="saveForm()" mat-raised-button color="warn">OK</button>
+      <button type="submit" mat-raised-button color="warn" [disabled]="!inputForm.valid">OK</button>
   </mat-card>
 </form>
+<mat-card class="error" *ngIf="errorMessage" data-cy="appError">
+  got an error while searching: {{ errorMessage }}
+</mat-card>
+
