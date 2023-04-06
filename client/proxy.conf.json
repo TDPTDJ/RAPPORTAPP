@@ -1,0 +1,11 @@
+  {
+    "/api": {
+      "target": "http://mfdbgt.sm-ms.lan:8550/services/db2ApiTDPTDJ/ssgzetdbrapport/1.0",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug",
+      "pathRewrite": {
+        "^/api" : ""
+      }
+    }
+  }

@@ -13,10 +13,11 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getRapportFromDb2$(input: InputBody) : Observable<OutputBody>{
+  getRapportFromDb2$(input: InputBody){
     return this.http
-    .post(`${environment.apiUrl}`, input.toJSON())
-    .pipe(catchError(this.handleError), map(OutputBody.fromJSON));
+    .post(`${environment.apiUrl}`, input.toJSON());
+    /*
+    .pipe(catchError(this.handleError), map(OutputBody.fromJSON)); */
   }
 
   handleError(err: any): Observable<any> {

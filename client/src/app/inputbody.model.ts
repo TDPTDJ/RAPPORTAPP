@@ -1,19 +1,19 @@
 interface InputbodyJson {
-    id: string,
+    iriziv_n: number,
     iprestdate: string,
     iclass: string
 }
 
 export class InputBody {
     constructor(
-    private _iriziv_n : string,
+    private _iriziv_n : number,
     private _iprestdate : string,
     private _iclass : string
     ){}
 
     toJSON(): InputbodyJson {
         return <InputbodyJson>{
-            id : this._iriziv_n,        
+            iriziv_n : this._iriziv_n,        
             iprestdate : this._iprestdate,
             iclass : this._iclass
         };

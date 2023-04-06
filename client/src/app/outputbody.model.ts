@@ -1,34 +1,35 @@
 interface OutputbodyJson {
     return_code: string,
-    sql_code: string,
-    htmlTable: string
+    sql_code: number,
+    sm_body: string
 }
 
 export class OutputBody {
     constructor(
-    public return_code : string,
-    public sql_code : string,
-    public htmlTable : string
+        private _return_code: string,
+        private _sql_code: number,
+        private _sm_body: string
     ){}
 
     static fromJSON(json: OutputbodyJson): OutputBody {
         const ob = new OutputBody(
-          json.return_code,
-          json.sql_code,
-          json.htmlTable
+            json.return_code,
+            json.sql_code,
+            json.sm_body
         );
         return ob;
     }
 
     getReturnCode(): string {
-        return this.return_code;
+        return this._return_code;
     }
 
-    getSqlCode(): string {
-        return this.sql_code;
+    getSqlCode(): number {
+        return this._sql_code;
     }
     
-    getHtmlTable() : string {
-        return this.htmlTable;
+    getSm_body() : string {
+        return this._sm_body;
     }
+
 }
