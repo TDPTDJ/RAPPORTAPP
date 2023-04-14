@@ -15,9 +15,8 @@ export class DataService {
 
   getRapportFromDb2$(input: InputBody){
     return this.http
-    .post(`${environment.apiUrl}`, input.toJSON());
-    /*
-    .pipe(catchError(this.handleError), map(OutputBody.fromJSON)); */
+    .post(`${environment.apiUrl}`, input.toJSON())
+    .pipe(catchError(this.handleError));
   }
 
   handleError(err: any): Observable<any> {

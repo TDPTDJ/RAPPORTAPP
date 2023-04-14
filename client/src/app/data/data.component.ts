@@ -21,7 +21,7 @@ export class DataComponent {
   constructor(private formbuild:FormBuilder, private ds: DataService,private router:Router){}
 
   inputForm = this.formbuild.group({
-    iriziv_n : ['', [Validators.required, Validators.maxLength(9)]],
+    iriziv_n : ['', [Validators.required, Validators.max(99999999), Validators.pattern("^[0-9]*$")]],
     iclass: ['', Validators.required],
     iprestdate: ['', Validators.required]
     });
@@ -39,14 +39,9 @@ export class DataComponent {
           return EMPTY;
         }), 
       ).subscribe((res: any) => {
-        console.log(res["Output Parameters"].return_code);
-        console.log(res["Output Parameters"].sql_code);
-        console.log(res["Output Parameters"].sm_body)
-
-        /*this.router.navigateByUrl(`/data-detail?state=${JSON.stringify(new  OutputBody(res["Output Parameters"].return_code, res["Output Parameters"].sql_code, res["Output Parameters"].sm_body))}`);*/
 
         this.router.navigate(['data-detail'],{
-          state: {sqlcode: res["Output Parameters"].sql_code, sm_body: res["Output Parameters"].sm_body}
+          state: {sqlcode: res["Output Parameters"].sql_code, sm_body: res["Output Parameters"].sm_body, return_code: res["Output Parameters"].return_code}
         });
       });
   }
