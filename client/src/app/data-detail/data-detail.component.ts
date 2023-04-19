@@ -1,9 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { DataService } from '../data-service.service';
-import { OutputBody } from '../outputbody.model';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { ViewEncapsulation } from '@angular/core'
+import * as html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-data-detail',
@@ -11,7 +9,7 @@ import { ViewEncapsulation } from '@angular/core'
   styleUrls: ['./data-detail.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class DataDetailComponent implements OnInit{
+export class DataDetailComponent{
 
   public sm_body? : string;
   public sqlcode? : number;
@@ -41,10 +39,24 @@ export class DataDetailComponent implements OnInit{
         break;
       }
     }
-
   }
 
-  ngOnInit() {
+  
+  @ViewChild('pdfTable', { static: false }) public pdfTable!: ElementRef;
+  
+  downloadAsPdf(): void {
+    var element = document.getElementById('pdfTable');
 
+    var opt = {
+        margin:      1,
+        filename:    'rapport_etdb.pdf',
+        image:       {type:'jpeg', quality: 0.98},
+        html2canvas: {scale: 2},
+        jsPDF:       {unit: 'in', format: 'letter', orientation: 'portrait'}
+    }
+
+    html2pdf().from(element).set(opt).save();
   }
 }
+
+

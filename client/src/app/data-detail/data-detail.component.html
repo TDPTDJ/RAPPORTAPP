@@ -1,17 +1,23 @@
-<div class= "button-container">
-    <a routerLink = "/">
-    <button mat-raised-button color="warn"><mat-icon>arrow_back</mat-icon></button>
-    </a>
+<div class="parent-container">
+    <div class= "button-container">
+        <a routerLink = "/">
+        <button mat-raised-button color="warn"><mat-icon>arrow_back</mat-icon></button>
+        </a>
+    </div>
+    <div class="button-container2">
+        <button mat-raised-button color="warn" (click)="downloadAsPdf()"  *ngIf="!errorMsg" ><mat-icon>picture_as_pdf</mat-icon> Download PDF</button>
+    </div>
 </div>
 
 <mat-card style="margin: 0 auto; margin-top: 20px; width: 90%;vertical-align: middle;">
-    <mat-card-header class="error" *ngIf="errorMsg" data-cy="appError">
-        {{errorMsg}}
-    </mat-card-header>
-    <div class="rapport-container" style="padding: 0 auto;">
-        <div style="padding: 0 auto;" [innerHTML] = "sm_body"></div>
-    </div>
+        <mat-card-header class="error" *ngIf="errorMsg" data-cy="appError">
+            {{errorMsg}}
+        </mat-card-header>
+        <div class="rapport-container" style="padding: 0 auto;">
+            <div id="pdfTable" #pdfTable style="padding: 0 auto;" [innerHTML] = "sm_body"></div>
+        </div>
 </mat-card>
+
 
 
 
